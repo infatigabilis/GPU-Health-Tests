@@ -8,7 +8,7 @@ tokenizer = BertTokenizerFast.from_pretrained('bert-base-uncased')
 def tokenize(batch):
     return tokenizer(batch['text'], padding=True, truncation=True)
 
-train_dataset, test_dataset = load_dataset('imdb', split=['train[:10%]', 'test[:10%]'])
+train_dataset, test_dataset = load_dataset('imdb', split=['train', 'test'])
 train_dataset = train_dataset.map(tokenize, batched=True, batch_size=len(train_dataset))
 test_dataset = test_dataset.map(tokenize, batched=True, batch_size=len(train_dataset))
 train_dataset.set_format('tensorflow', columns=['input_ids', 'attention_mask', 'label'])
@@ -44,5 +44,7 @@ trainer = TFTrainer(
     train_dataset=tf_train_dataset,
     eval_dataset=tf_test_dataset
 )
+
+print("Start training...")
 
 trainer.train()

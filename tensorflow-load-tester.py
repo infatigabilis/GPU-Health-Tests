@@ -24,27 +24,12 @@ def to_tfds(dataset):
 tf_train_dataset = to_tfds(train_dataset)
 tf_test_dataset = to_tfds(test_dataset)
 
-training_args = TFTrainingArguments(
-    output_dir='./results',
-    num_train_epochs=EPOCHS,
-    per_device_train_batch_size=BATCH_SIZE,
-    per_device_eval_batch_size=BATCH_SIZE,
-    warmup_steps=500,
-    weight_decay=0.01,
-    evaluate_during_training=True,
-    logging_dir='./logs',
-)
+compute_strategy = tf.distribute.MirroredStrategy()
 
-with training_args.strategy.scope():
+with compute_strategy.scope():
     model = TFBertForSequenceClassification.from_pretrained('bert-base-uncased')
-
-trainer = TFTrainer(
-    model=model,
-    args=training_args,
-    train_dataset=tf_train_dataset,
-    eval_dataset=tf_test_dataset
-)
-
-print("Start training...")
-
-trainer.train()
+    
+    model.compile(optimizer = tf.keras.optimizers.Adam(learning_rate=3e-5),
+                  loss = tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True))
+    
+    model.fit(tf_train_dataset.batch(BATCH_SIZE), epochs=EPOCHS)

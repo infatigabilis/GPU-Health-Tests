@@ -3,3 +3,4 @@ nlp==0.3.0
 torch==1.5.1
 tensorflow==2.2.0
 numpy==1.19.0
+pyarrow==0.17.1

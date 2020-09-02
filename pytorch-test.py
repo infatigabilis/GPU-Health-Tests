@@ -1,3 +1,5 @@
+import sys
+
 from nlp import load_dataset
 from sklearn.metrics import accuracy_score
 from transformers import BertForSequenceClassification, BertTokenizerFast, Trainer, TrainingArguments
@@ -44,3 +46,10 @@ trainer = Trainer(
 )
 
 trainer.train()
+
+final_acc = trainer.evaluate()['eval_accuracy']
+
+if final_acc > 0.98:
+    print('Test passed')
+else:
+    print("Test failed: The model hasn't reached the expected metrics. Perhaps GPU's computational ability is broken (for example, due to overheating)", file=sys.stderr)

@@ -1,4 +1,4 @@
-# GPUs Load Testing
+# GPUs Performance Testing
 
 ## Install
 
@@ -13,6 +13,8 @@ virtualenv --system-site-packages -p python3 .venv
 ```bash
 nohup .venv/bin/python pytorch-load-tester.py > training.out 2>&1 &
 ```
+
+Test is passed if the script completes successfully and contained the "Test passed" output.
 
 ## Run TensorBoard (to see training progress)
 

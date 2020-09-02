@@ -11,7 +11,7 @@ virtualenv --system-site-packages -p python3 .venv
 ## Run
 
 ```bash
-nohup .venv/bin/python3 pytorch-load-tester.py > training.out 2>&1 &
+nohup .venv/bin/python pytorch-load-tester.py > training.out 2>&1 &
 ```
 
 ## Run TensorBoard (to see training progress)

@@ -1,4 +1,5 @@
 from nlp import load_dataset
+from sklearn.metrics import accuracy_score
 from transformers import BertForSequenceClassification, BertTokenizerFast, Trainer, TrainingArguments
 
 from config import EPOCHS, BATCH_SIZE
@@ -12,10 +13,9 @@ def tokenize(batch):
 
 
 def compute_accuracy(eval_prediction):
-    print(f'pred shape: {eval_prediction.predictions.shape}')
-    print(f'label shape: {eval_prediction.label_ids.shape}')
-    print(f'label 0: {eval_prediction.label_ids[0]}')
-    return {'accuracy': 0.123}
+    preds = eval_prediction.predictions.argmax(axis=1)
+    acc = accuracy_score(eval_prediction.label_ids, preds)
+    return {'accuracy': acc}
 
 
 train_dataset, test_dataset = load_dataset('imdb', split=['train', 'test'])

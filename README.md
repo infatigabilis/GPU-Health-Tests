@@ -11,7 +11,7 @@ virtualenv --system-site-packages -p python3 .venv
 ## Run
 
 ```bash
-nohup .venv/bin/python pytorch-load-tester.py > training.out 2>&1 &
+.venv/bin/python pytorch-test.py
 ```
 
 Test is passed if the script completes successfully and contained the "Test passed" output.
@@ -19,7 +19,7 @@ Test is passed if the script completes successfully and contained the "Test pass
 ## Run TensorBoard (to see training progress)
 
 ```bash
-nohup tensorboard --logdir logs > tensorboard.out 2>&1 &
+tensorboard --logdir logs
 ```
 
 ---

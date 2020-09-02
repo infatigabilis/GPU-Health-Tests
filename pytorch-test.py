@@ -49,7 +49,7 @@ trainer.train()
 
 final_acc = trainer.evaluate()['eval_accuracy']
 
-if final_acc > 0.98:
+if final_acc > 0.9:
     print('Test passed')
 else:
     print("Test failed: The model hasn't reached the expected metrics. Perhaps GPU's computational ability is broken (for example, due to overheating)", file=sys.stderr)

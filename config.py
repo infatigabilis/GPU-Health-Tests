@@ -1,2 +1,2 @@
 BATCH_SIZE = 4
-EPOCHS = 5
+EPOCHS = 2

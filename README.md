@@ -11,12 +11,18 @@ virtualenv --system-site-packages -p python3 .venv
 ## Run
 
 ```bash
-.venv/bin/python3 pytorch-load-tester.py
+nohup .venv/bin/python3 pytorch-load-tester.py > training.out 2>&1 &
+```
+
+## Run TensorBoard (to see training progress)
+
+```bash
+nohup tensorboard --logdir logs > tensorboard.out 2>&1 &
 ```
 
 ---
 
-## Install pre requirements (Ubuntu)
+## Install prerequisites (Ubuntu)
 
 ```bash
 sudo apt install -y python3-pip

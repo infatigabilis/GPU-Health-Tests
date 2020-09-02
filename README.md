@@ -1,4 +1,4 @@
-# GPUs Performance Testing
+# GPU Performance Testing
 
 ## Install
 

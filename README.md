@@ -1,4 +1,4 @@
-# GPUs Load Testing
+# GPU Performance Testing
 
 ## Install
 
@@ -11,12 +11,20 @@ virtualenv --system-site-packages -p python3 .venv
 ## Run
 
 ```bash
-.venv/bin/python3 pytorch-load-tester.py
+.venv/bin/python pytorch-test.py
+```
+
+Test is passed if the script completes successfully and contained the "Test passed" output.
+
+## Run TensorBoard (to see training progress)
+
+```bash
+tensorboard --logdir logs
 ```
 
 ---
 
-## Install pre requirements (Ubuntu)
+## Install prerequisites (Ubuntu)
 
 ```bash
 sudo apt install -y python3-pip
